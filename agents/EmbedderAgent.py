@@ -16,7 +16,7 @@
 from abc import ABC
 from .core import Agent 
 from vertexai.language_models import TextEmbeddingModel
-
+from utilities import VECTOR_EMBEDDING_MODEL
 
 
 class EmbedderAgent(Agent, ABC):
@@ -31,7 +31,7 @@ class EmbedderAgent(Agent, ABC):
     Attributes:
         agentType (str): Indicates the type of agent, fixed as "EmbedderAgent".
         mode (str): The embedding generation mode ("vertex" or "lang-vertex").
-        model: The underlying embedding model (Vertex AI TextEmbeddingModel or LangChain's VertexAIEmbeddings).
+        embeddings_model: The underlying embedding model (Vertex AI TextEmbeddingModel or LangChain's VertexAIEmbeddings).
 
     Methods:
         create(question) -> list:
@@ -50,7 +50,8 @@ class EmbedderAgent(Agent, ABC):
 
     agentType: str = "EmbedderAgent"
 
-    def __init__(self, mode, embeddings_model='textembedding-gecko@002'): 
+    def __init__(self, mode, embeddings_model=VECTOR_EMBEDDING_MODEL): 
+        #TODO: change this to use the config.
         if mode == 'vertex': 
             self.mode = mode 
             self.model = TextEmbeddingModel.from_pretrained(embeddings_model)
