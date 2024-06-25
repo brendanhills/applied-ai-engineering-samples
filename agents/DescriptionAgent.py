@@ -15,7 +15,8 @@
 
 from abc import ABC
 from .core import Agent 
-
+import logging
+logger = logging.getLogger(__name__)
 
 class DescriptionAgent(Agent, ABC):
     """
@@ -50,7 +51,6 @@ class DescriptionAgent(Agent, ABC):
                     - The updated `column_name_df` with generated column descriptions.
     """
 
-
     agentType: str = "DescriptionAgent"
 
     def generate_llm_response(self,prompt):
@@ -63,6 +63,7 @@ class DescriptionAgent(Agent, ABC):
         for index, row in table_desc_df.iterrows():
             if row['table_description'] is None or row['table_description']=='NA':
                 q=f"table_name == '{row['table_name']}' and table_schema == '{row['table_schema']}'"
+                logger.info(f"Generate description for table {row['project_id']}.{row['table_schema']}.{row['table_name']}")
                 if source=='bigquery':
                     context_prompt = f"""
                         Generate table description short and crisp for the table {row['project_id']}.{row['table_schema']}.{row['table_name']}
@@ -95,6 +96,8 @@ class DescriptionAgent(Agent, ABC):
             # print(row['column_description'])
             if row['column_description'] is None or row['column_description']=='':
                 q=f"table_name == '{row['table_name']}' and table_schema == '{row['table_schema']}'"
+                logger.info(f"Generate description for column  {row['project_id']}.{row['table_schema']}.{row['table_name']}.{row['column_name']} ")
+                
                 if source=='bigquery':
                     context_prompt = f"""
                     Generate short and crisp description for the column {row['project_id']}.{row['table_schema']}.{row['table_name']}.{row['column_name']}

@@ -137,3 +137,6 @@ dmypy.json
 
 *.tfstate
 *.tfstate.backup
+breedr.code-workspace
+poetry.lock
+.vscode/settings.json

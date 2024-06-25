@@ -36,6 +36,7 @@ def is_root_dir():
 
 
 def save_config(embedding_model,
+                vector_embedding_model,
                 description_model,
                 data_source, 
                 vector_store,
@@ -72,6 +73,7 @@ def save_config(embedding_model,
     config['CONFIG']['DATA_SOURCE'] = data_source
     config['CONFIG']['VECTOR_STORE'] = vector_store
     config['CONFIG']['EMBEDDING_MODEL'] = embedding_model
+    config['CONFIG']['VECTOR_EMBEDDING_MODEL'] = vector_embedding_model
     config['CONFIG']['DESCRIPTION_MODEL'] = description_model
 
 

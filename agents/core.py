@@ -67,7 +67,7 @@ class Agent(ABC):
                 HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
         }
         else:
-            raise ValueError("Please specify a compatible model.")
+            raise ValueError(f"Please specify a compatible model.  Passed Model ID: {model_id}")
 
     def generate_llm_response(self,prompt):
         context_query = self.model.generate_content(prompt,stream=False)
