@@ -140,3 +140,4 @@ dmypy.json
 breedr.code-workspace
 poetry.lock
 .vscode/settings.json
+config.ini
