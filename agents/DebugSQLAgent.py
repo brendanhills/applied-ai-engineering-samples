@@ -23,6 +23,8 @@ import pandas as pd
 import json  
 from dbconnectors import pgconnector, bqconnector
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 class DebugSQLAgent(Agent, ABC):
@@ -159,8 +161,8 @@ class DebugSQLAgent(Agent, ABC):
         if self.chat_model_id == 'codechat-bison-32k':
             chat_model = CodeChatModel.from_pretrained("codechat-bison-32k")
             chat_session = chat_model.start_chat(context=context_prompt)
-        elif self.chat_model_id == 'gemini-1.0-pro':
-            chat_model = GenerativeModel("gemini-1.0-pro-001")
+        elif self.chat_model_id.startswith('gemini-1'):
+            chat_model = GenerativeModel(self.chat_model_id)
             chat_session = chat_model.start_chat(response_validation=False)
             chat_session.send_message(context_prompt)
         elif self.chat_model_id == 'gemini-ultra':
@@ -196,7 +198,7 @@ class DebugSQLAgent(Agent, ABC):
         if self.chat_model_id =='codechat-bison-32k':
             response = chat_session.send_message(context_prompt)
             resp_return = (str(response.candidates[0])).replace("```sql", "").replace("```", "")
-        elif self.chat_model_id =='gemini-1.0-pro':
+        elif self.chat_model_id.startswith('gemini-1'):
             response = chat_session.send_message(context_prompt, stream=False)
             resp_return = (str(response.text)).replace("```sql", "").replace("```", "")
         elif self.chat_model_id == 'gemini-ultra':

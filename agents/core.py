@@ -26,7 +26,8 @@ from vertexai.language_models import CodeChatModel
 from vertexai.generative_models import GenerativeModel
 from vertexai.generative_models import HarmCategory,HarmBlockThreshold
 
-
+import logging
+logger = logging.getLogger(__name__)
 
 from utilities import PROJECT_ID, PG_REGION
 vertexai.init(project=PROJECT_ID, location=PG_REGION)
@@ -50,16 +51,16 @@ class Agent(ABC):
         """
 
         self.model_id = model_id 
-
+        logger.info(f"LLM Model is {model_id} ")
         if model_id == 'code-bison-32k':
             self.model = CodeGenerationModel.from_pretrained('code-bison-32k')
         elif model_id == 'text-bison-32k':
             self.model = TextGenerationModel.from_pretrained('text-bison-32k')
         elif model_id == 'codechat-bison-32k':
             self.model = CodeChatModel.from_pretrained("codechat-bison-32k")
-        elif model_id == 'gemini-1.0-pro':
+        elif model_id.startswith('gemini-1'):
             with telemetry.tool_context_manager('opendataqna'):
-                self.model = GenerativeModel("gemini-1.0-pro-001")
+                self.model = GenerativeModel(model_id)
                 self.safety_settings: Optional[dict] = {
                 HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
                 HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,

@@ -28,6 +28,8 @@ from agents import ValidateSQLAgent
 import pandas as pd
 import json  
 
+import logging
+logger = logging.getLogger(__name__)
 
 class VisualizeAgent(Agent, ABC):
     """
