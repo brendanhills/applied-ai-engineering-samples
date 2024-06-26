@@ -30,7 +30,7 @@ In version 1, these are:
 - Code Bison ('code-bison-32k')
 - Text Bison ('text-bison-32k')
 - Codechat Bison ('codechat-bison-32k') 
-- Gemini 1.0 pro ('gemini-1.0-pro')
+- Gemini 1.0 pro ('gemini-1.5-pro-001')
 
 You can set the different models for each agent when calling the pipeline_run function (see below under `Pipeline Run Configurations`). 
 
@@ -52,10 +52,10 @@ async def run_pipeline(user_question,
                EXECUTE_FINAL_SQL=True,
                DEBUGGING_ROUNDS = 2,
                LLM_VALIDATION=True,
-               SQLBuilder_model= 'gemini-1.0-pro',
-               SQLChecker_model= 'gemini-1.0-pro',
-               SQLDebugger_model= 'gemini-1.0-pro',
-               Responder_model= 'gemini-1.0-pro',
+               SQLBuilder_model= 'gemini-1.5-pro-001',
+               SQLChecker_model= 'gemini-1.5-pro-001',
+               SQLDebugger_model= 'gemini-1.5-pro-001',
+               Responder_model= 'gemini-1.5-pro-001',
                num_table_matches = 5,
                num_column_matches = 10,
                table_similarity_threshold = 0.3,
@@ -76,10 +76,10 @@ We suggest using a value between 2-5, depending on your accuracy and latency req
 You can disable the SQL execution. This will leave you with the generated SQL query as a response, skipping the retrieval of the execution result and the response generation. 
 * **LLM_VALIDATION (bool, optional):** Whether to use LLM for SQL validation during debugging. Defaults to True.
 You can disable the SQL Validator if you have specific latency requirements. When disabled, the Debugger will execute a dry run to retrieve any errors from the database call and debug accordingly. 
-* **SQLBuilder_model (str, optional):** The name of the SQL building model. Defaults to 'gemini-1.0-pro'.
-* **SQLChecker_model (str, optional):** The name of the SQL validation model. Defaults to 'gemini-1.0-pro'.
-* **SQLDebugger_model (str, optional):** The name of the SQL debugging model. Defaults to 'gemini-1.0-pro'.
-* **Responder_model (str, optional):** The name of the response generation model. Defaults to 'gemini-1.0-pro'.
+* **SQLBuilder_model (str, optional):** The name of the SQL building model. Defaults to 'gemini-1.5-pro-001'.
+* **SQLChecker_model (str, optional):** The name of the SQL validation model. Defaults to 'gemini-1.5-pro-001'.
+* **SQLDebugger_model (str, optional):** The name of the SQL debugging model. Defaults to 'gemini-1.5-pro-001'.
+* **Responder_model (str, optional):** The name of the response generation model. Defaults to 'gemini-1.5-pro-001'.
 * **num_table_matches (int, optional):** The number of similar tables to retrieve. Defaults to 5.
 These will be used when calling the SQL Generation Agent. 
 We recommend setting this higher if you have high variations in your database and user queries. 

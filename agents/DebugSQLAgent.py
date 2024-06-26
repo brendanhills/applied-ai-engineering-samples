@@ -37,7 +37,7 @@ class DebugSQLAgent(Agent, ABC):
         agentType (str): Indicates the type of agent, fixed as "DebugSQLAgent".
         chat_model_id (str): The ID of the chat model to use for debugging. Valid options are:
             - "codechat-bison-32k"
-            - "gemini-1.0-pro" 
+            - "gemini-1.5-pro-001" 
             - "gemini-ultra"
 
     Methods:
@@ -89,7 +89,7 @@ class DebugSQLAgent(Agent, ABC):
 
     agentType: str = "DebugSQLAgent"
 
-    def __init__(self, chat_model_id = 'gemini-1.0-pro'): 
+    def __init__(self, chat_model_id '): 
         self.chat_model_id = chat_model_id
         # self.model = CodeChatModel.from_pretrained("codechat-bison-32k")
 

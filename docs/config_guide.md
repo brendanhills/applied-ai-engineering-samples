@@ -6,7 +6,7 @@ ______________
 
 **embedding_model = vertex**     *;Options: 'vertex' or 'vertex-lang'*
 
-**description_model = gemini-1.0-pro**   *;Options 'gemini-1.0-pro', 'text-bison-32k'*
+**description_model = gemini-1.5-pro-001**   *;Options 'gemini-1.5-pro-001', 'text-bison-32k'*
 
 **data_source = bigquery**    *;Options: 'bigquery' and 'cloudsql-pg'* 
 

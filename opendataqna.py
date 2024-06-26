@@ -363,7 +363,7 @@ def get_results(user_database, final_sql, invalid_response=False, EXECUTE_FINAL_
 
     return result_df,invalid_response
 
-def get_response(user_question,result_df,Responder_model='gemini-1.0-pro'):
+def get_response(user_question,result_df,Responder_model='gemini-1.5-pro-001'):
     try:
         Responder = ResponseAgent(Responder_model)
         _resp=Responder.run(user_question, result_df)
@@ -409,9 +409,9 @@ async def run_pipeline(user_question,
         LLM_VALIDATION (bool, optional): Whether to use LLM for validation. Defaults to True.
         Embedder_model (str, optional): The name of the embedding model. Defaults to 'vertex'.
         SQLBuilder_model (str, optional): The name of the SQL builder model. Defaults to 'gemini-1.5-pro'.
-        SQLChecker_model (str, optional): The name of the SQL checker model. Defaults to 'gemini-1.0-pro'.
-        SQLDebugger_model (str, optional): The name of the SQL debugger model. Defaults to 'gemini-1.0-pro'.
-        Responder_model (str, optional): The name of the responder model. Defaults to 'gemini-1.0-pro'.
+        SQLChecker_model (str, optional): The name of the SQL checker model. Defaults to 'gemini-1.5-pro-001'.
+        SQLDebugger_model (str, optional): The name of the SQL debugger model. Defaults to 'gemini-1.5-pro-001'.
+        Responder_model (str, optional): The name of the responder model. Defaults to 'gemini-1.5-pro-001'.
         num_table_matches (int, optional): The number of table matches to retrieve. Defaults to 5.
         num_column_matches (int, optional): The number of column matches to retrieve. Defaults to 10.
         table_similarity_threshold (float, optional): The similarity threshold for table matching. Defaults to 0.3.
@@ -566,10 +566,10 @@ if __name__ == '__main__':
     parser.add_argument("--debugging_rounds", type=int, default=2, help="Number of debugging rounds (default: 2)")
     parser.add_argument("--llm_validation", action="store_true", help="Enable LLM validation (default: False)")
     parser.add_argument("--embedder_model", type=str, default='vertex', help="Embedder model name (default: 'vertex')")
-    parser.add_argument("--sqlbuilder_model", type=str, default='gemini-1.0-pro', help="SQL builder model name (default: 'gemini-1.0-pro')")
-    parser.add_argument("--sqlchecker_model", type=str, default='gemini-1.0-pro', help="SQL checker model name (default: 'gemini-1.0-pro')")
-    parser.add_argument("--sqldebugger_model", type=str, default='gemini-1.0-pro', help="SQL debugger model name (default: 'gemini-1.0-pro')")
-    parser.add_argument("--responder_model", type=str, default='gemini-1.0-pro', help="Responder model name (default: 'gemini-1.0-pro')")
+    parser.add_argument("--sqlbuilder_model", type=str, default='gemini-1.5-pro-001', help="SQL builder model name (default: 'gemini-1.5-pro-001')")
+    parser.add_argument("--sqlchecker_model", type=str, default='gemini-1.5-pro-001', help="SQL checker model name (default: 'gemini-1.5-pro-001')")
+    parser.add_argument("--sqldebugger_model", type=str, default='gemini-1.5-pro-001', help="SQL debugger model name (default: 'gemini-1.5-pro-001')")
+    parser.add_argument("--responder_model", type=str, default='gemini-1.5-pro-001', help="Responder model name (default: 'gemini-1.5-pro-001')")
     parser.add_argument("--num_table_matches", type=int, default=5, help="Number of table matches (default: 5)")
     parser.add_argument("--num_column_matches", type=int, default=10, help="Number of column matches (default: 10)")
     parser.add_argument("--table_similarity_threshold", type=float, default=0.1, help="Threshold for table similarity (default: 0.1)")
@@ -609,10 +609,10 @@ if __name__ == '__main__':
     #                                                 DEBUGGING_ROUNDS = 2, 
     #                                                 LLM_VALIDATION=True,
     #                                                 Embedder_model='vertex',
-    #                                                 SQLBuilder_model= 'gemini-1.0-pro',
-    #                                                 SQLChecker_model= 'gemini-1.0-pro',
-    #                                                 SQLDebugger_model= 'gemini-1.0-pro',
-    #                                                 Responder_model= 'gemini-1.0-pro',
+    #                                                 SQLBuilder_model= 'gemini-1.5-pro-001',
+    #                                                 SQLChecker_model= 'gemini-1.5-pro-001',
+    #                                                 SQLDebugger_model= 'gemini-1.5-pro-001',
+    #                                                 Responder_model= 'gemini-1.5-pro-001',
     #                                                 num_table_matches = 5,
     #                                                 num_column_matches = 10,
     #                                                 table_similarity_threshold = 0.1,

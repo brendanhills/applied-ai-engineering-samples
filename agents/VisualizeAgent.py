@@ -82,8 +82,8 @@ class VisualizeAgent(Agent, ABC):
     agentType: str ="VisualizeAgent"
 
     def __init__(self):
-        self.model_id = 'gemini-1.0-pro'
-        self.model = GenerativeModel("gemini-1.0-pro-001")
+        self.model_id = 'gemini-1.5-pro'
+        self.model = GenerativeModel("gemini-1.5-pro-001")
 
     def getChartType(self,user_question, generated_sql):
         map_prompt=f'''

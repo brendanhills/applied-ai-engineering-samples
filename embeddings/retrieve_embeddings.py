@@ -23,7 +23,7 @@ from agents import EmbedderAgent, ResponseAgent, DescriptionAgent
 from utilities import EMBEDDING_MODEL, DESCRIPTION_MODEL
 
 embedder = EmbedderAgent(EMBEDDING_MODEL)
-# responder = ResponseAgent('gemini-1.0-pro')
+# responder = ResponseAgent('gemini-1.5-pro-001')
 descriptor = DescriptionAgent(DESCRIPTION_MODEL)
 
 
