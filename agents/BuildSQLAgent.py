@@ -18,6 +18,8 @@ from abc import ABC
 from .core import Agent 
 from vertexai.generative_models import GenerationConfig
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 class BuildSQLAgent(Agent, ABC):
@@ -91,7 +93,7 @@ class BuildSQLAgent(Agent, ABC):
             {tables_detailed_schema}
 
             """
-            # print(context_prompt)
+            logger.debug(context_prompt)
 
 
         else: 
@@ -142,8 +144,8 @@ class BuildSQLAgent(Agent, ABC):
 
             """
             # print(context_prompt)
-
-        if 'gemini' in self.model_id:
+        logger.debug(f"{self.model_id=}")
+        if self.model_id.startswith('gemini-1'):
             # Generation Config
             config = GenerationConfig(
                 max_output_tokens=max_output_tokens, temperature=temperature, top_p=top_p, top_k=top_k

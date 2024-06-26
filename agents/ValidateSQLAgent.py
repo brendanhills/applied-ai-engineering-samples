@@ -17,6 +17,8 @@ import json
 from abc import ABC
 from .core import Agent 
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 class ValidateSQLAgent(Agent, ABC):
@@ -83,8 +85,9 @@ class ValidateSQLAgent(Agent, ABC):
 
         """
 
-        
-        if self.model_id =='gemini-1.0-pro':
+        logger.debug(f"{self.model_id=}")
+
+        if self.model_id.startswith('gemini-1'):
             context_query = self.model.generate_content(context_prompt, stream=False)
             generated_sql = str(context_query.candidates[0].text)
 

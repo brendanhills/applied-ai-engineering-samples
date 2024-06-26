@@ -18,6 +18,9 @@ from abc import ABC
 from .core import Agent 
 from vertexai.generative_models import HarmCategory, HarmBlockThreshold
 
+import logging
+logger = logging.getLogger(__name__)
+
 class ResponseAgent(Agent, ABC):
     """
     An agent that generates natural language responses to user questions based on SQL query results.
@@ -55,8 +58,8 @@ class ResponseAgent(Agent, ABC):
             Provide a natural sounding response to the user to answer the question with the SQL result provided to you.
         """
 
-
-        if self.model_id =='gemini-1.0-pro':
+        logger.debug(f"{self.model_id=}")
+        if self.model_id.startswith('gemini'):
             context_query = self.model.generate_content(context_prompt, stream=False)
             generated_sql = str(context_query.candidates[0].text)
 

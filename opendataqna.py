@@ -22,6 +22,10 @@ from utilities import (PROJECT_ID, PG_REGION, BQ_REGION, EXAMPLES, LOGGING, VECT
 from dbconnectors import bqconnector, pgconnector
 from embeddings.store_embeddings import add_sql_embedding
 
+
+import logging
+logger = logging.getLogger(__name__)
+
 Visualize=VisualizeAgent()
 
 
@@ -381,10 +385,10 @@ async def run_pipeline(user_question,
                 DEBUGGING_ROUNDS = 2, 
                 LLM_VALIDATION=True,
                 Embedder_model='vertex',
-                SQLBuilder_model= 'gemini-1.5-pro',
-                SQLChecker_model= 'gemini-1.0-pro',
-                SQLDebugger_model= 'gemini-1.0-pro',
-                Responder_model= 'gemini-1.0-pro',
+                SQLBuilder_model= 'gemini-1.5-flash-001',
+                SQLChecker_model= 'gemini-1.5-flash-001',
+                SQLDebugger_model= 'gemini-1.5-flash-001',
+                Responder_model= 'gemini-1.5-flash-001',
                 num_table_matches = 5,
                 num_column_matches = 10,
                 table_similarity_threshold = 0.3,
